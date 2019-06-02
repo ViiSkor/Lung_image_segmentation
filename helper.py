@@ -105,27 +105,27 @@ def plot_data(dataset_images, dataset_masks, generator):
 
   plt.show()
   
-def plot_result(X, y, prediction):
+def plot_result(X, y, prediction, n_show):
   fig = plt.figure(figsize=(15, 12))
     
-  for i in range(3):
+  for i in range(n_show):
     j = np.random.randint(len(X))
-    plt.subplot(3, 4, i*4+1)
+    plt.subplot(n_show, 4, i*4+1)
     plt.imshow(X[j, :, :, :])
     plt.axis('off')
       
-    plt.subplot(3, 4, i*4+2)
+    plt.subplot(n_show, 4, i*4+2)
     plt.gca().set_title('Origin mask')
     plt.imshow(y[j, :, :, 0], cmap='gray')
     plt.axis('off')
       
-    plt.subplot(3, 4, i*4+3)
+    plt.subplot(n_show, 4, i*4+3)
     plt.gca().set_title('Predicted mask')
     plt.imshow(prediction[j, :, :, 0], cmap='gray')
     plt.axis('off')
       
     overlay = cv2.addWeighted(y[j, :, :, 0], 0.5, prediction[j, :, :, 0], 0.5, 0)
-    plt.subplot(3, 4, i*4+4)
+    plt.subplot(n_show, 4, i*4+4)
     plt.gca().set_title('Overlay origin and predicted mask')
     plt.imshow(overlay)
     plt.axis('off')
